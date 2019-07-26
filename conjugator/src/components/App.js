@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 import React from 'react';
 import { Route, Link } from "react-router-dom";
 import Home from './Home';
@@ -11,13 +11,15 @@ class App extends React.Component {
 		return (
       <div>
         <nav>
-        <div>
-          <Link to="/">Home</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/settings">Settings</Link>
-          <Link to="/login">Login</Link>
-        </div>
-      </nav>
+          <div className="header-content">
+            <Link to="/">Conjugator</Link>
+            <div>
+              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/settings">Settings</Link>
+              <Link to="/login">Login</Link>
+            </div>
+          </div>
+        </nav>
 
         <Route path="/" exact render={(props) => <Home {...props} />} />
         <Route path="/dashboard" exact render={(props) => <Dashboard {...props} />} />
