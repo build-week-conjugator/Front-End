@@ -1,9 +1,10 @@
 import React from 'react';
+import './css/login.css'
 
 class Login extends React.Component {
     render() {
         return (
-            <div>
+            <div className='login-content'>
                 <form>
                     <h3>Login</h3>
                     <input 
@@ -22,7 +23,7 @@ class Login extends React.Component {
 
                     <br/>
 
-                    <button>Login</button>
+                    <button className='login-button'>Login</button>
 
                     <br/>
 
