@@ -1,18 +1,21 @@
 import React from 'react';
+import './css/settings.css'
 
 class Settings extends React.Component {
     render() {
         return (
-            <div>
+            <div className='settings-content'>
                 <h3>Settings</h3>
 
-                <div>Imperfect Tense</div>
+                <div className='dificulty-content'>
+                    <div>Imperfect Tense</div>
 
-                <div>Difficulty</div>
+                    <div>Difficulty</div>
 
-                <div>Tenses</div>
+                    <div>Tenses</div>
+                </div>
 
-                <button>Update</button>
+                <button className='settings-button'>Update</button>
             </div>
         )
     }
