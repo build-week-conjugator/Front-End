@@ -1,8 +1,10 @@
 import './css/App.css';
 import React from 'react';
 import { Route, Link } from "react-router-dom";
+import PrivateRoute from './PrivateRoute'
 import Home from './Home';
 import Login from './Login';
+import SignUp from './SignUp'
 import Dashboard from './Dashboard';
 import Settings from './Settings';
 
@@ -21,10 +23,11 @@ class App extends React.Component {
           </div>
         </nav>
 
-        <Route path="/" exact render={(props) => <Home {...props} />} />
-        <Route path="/dashboard" exact render={(props) => <Dashboard {...props} />} />
-        <Route path="/settings" exact render={(props) => <Settings {...props} />} />
-        <Route path="/login" exact render={(props) => <Login {...props} />} />
+        <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/settings" component={Settings} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signUp" component={SignUp} />
 			</div>
 		)
 	}

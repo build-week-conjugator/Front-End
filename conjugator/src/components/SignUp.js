@@ -1,17 +1,21 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { login } from '../actions'
+import { signUp, unload } from '../actions'
 import './css/login.css'
 
-class Login extends React.Component {
+class SignUp extends React.Component {
     constructor() {
 		super()
 		this.state = {
 			username: '',
 			password: '',
 		}
-	}
+    }
+    
+    componentWillUnmount() {
+        this.props.unload();
+    }
 
     handleChange = (evt) => {
 
@@ -25,23 +29,18 @@ class Login extends React.Component {
 
 		const { username, password } = this.state
 
-		this.props.login(username, password)
-			.then(() => {
-				this.props.history.push("/")
-			})
-			.catch((err) => {
-				console.error(err)
-			})
+		this.props.signUp(username, password)
+			
 	}
 
     render() {
         const { username, password } = this.state
-        const { isLoading, errorMessage } = this.props
+        const { created, errorMessage } = this.props
 
         return (
             <div className='login-content'>
                 <form onSubmit={this.handleSubmit}>
-                    <h3>Login</h3>
+                    <h3>Sign Up</h3>
                     {errorMessage && <p>{errorMessage}</p>}
                     <input 
                         type= 'text'
@@ -63,30 +62,30 @@ class Login extends React.Component {
 
                     <br/>
 
-                    {isLoading
-                        ? <p>Logging in...</p>
-                        : <button type="submit">Login</button>}
+                    {created
+                        ? <p>Account created successfully.</p>
+                        : <button type="submit">Sign Up</button>}
 
                     <br/>
                 </form>
-                <span>Don't have an account yet? <a href='/signUp'>Sign up</a> here</span>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-	isLoading: state.isLoading,
+	created: state.created,
 	errorMessage: state.errorMessage,
 })
 
 const mapDispatchToProps = {
-	login,
+    signUp,
+    unload,
 }
 
 export default withRouter(
 	connect(
 		mapStateToProps,
 		mapDispatchToProps,
-	)(Login)
+	)(SignUp)
 )
